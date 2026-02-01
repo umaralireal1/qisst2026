@@ -21,8 +21,6 @@ interface Props {
 
 const Dashboard: React.FC<Props> = ({ data }) => {
   const today = new Date().toISOString().split('T')[0];
-  const currentMonth = new Date().getMonth();
-  const currentYear = new Date().getFullYear();
 
   const totalCustomers = data.customers.length;
   const totalCollected = data.attendance.reduce((acc, rec) => acc + rec.amountPaid, 0);
@@ -86,7 +84,7 @@ const Dashboard: React.FC<Props> = ({ data }) => {
                 <TrendingUp className="w-4 h-4 text-red-300" />
               </div>
             )}
-            {drawReminders.map(q => (
+            {drawReminders.map((q) => (
               <div key={q.id} className="flex items-center justify-between p-3 bg-indigo-50 rounded-xl border border-indigo-100">
                 <div className="flex items-center gap-3">
                   <Trophy className="w-4 h-4 text-indigo-600" />
@@ -192,8 +190,6 @@ interface Props {
 
 const Dashboard: React.FC<Props> = ({ data }) => {
   const today = new Date().toISOString().split('T')[0];
-  const currentMonth = new Date().getMonth();
-  const currentYear = new Date().getFullYear();
 
   const totalCustomers = data.customers.length;
   const totalCollected = data.attendance.reduce((acc, rec) => acc + rec.amountPaid, 0);
@@ -257,7 +253,7 @@ const Dashboard: React.FC<Props> = ({ data }) => {
                 <TrendingUp className="w-4 h-4 text-red-300" />
               </div>
             )}
-            {drawReminders.map(q => (
+            {drawReminders.map((q) => (
               <div key={q.id} className="flex items-center justify-between p-3 bg-indigo-50 rounded-xl border border-indigo-100">
                 <div className="flex items-center gap-3">
                   <Trophy className="w-4 h-4 text-indigo-600" />
@@ -363,8 +359,6 @@ interface Props {
 
 const Dashboard: React.FC<Props> = ({ data }) => {
   const today = new Date().toISOString().split('T')[0];
-  const currentMonth = new Date().getMonth();
-  const currentYear = new Date().getFullYear();
 
   const totalCustomers = data.customers.length;
   const totalCollected = data.attendance.reduce((acc, rec) => acc + rec.amountPaid, 0);
@@ -428,7 +422,7 @@ const Dashboard: React.FC<Props> = ({ data }) => {
                 <TrendingUp className="w-4 h-4 text-red-300" />
               </div>
             )}
-            {drawReminders.map(q => (
+            {drawReminders.map((q) => (
               <div key={q.id} className="flex items-center justify-between p-3 bg-indigo-50 rounded-xl border border-indigo-100">
                 <div className="flex items-center gap-3">
                   <Trophy className="w-4 h-4 text-indigo-600" />
