@@ -18,15 +18,27 @@ const QisstManager: React.FC<Props> = ({ data, setData }) => {
   });
 
   const handleAdd = () => {
-    if (!newQisst.name || !newQisst.dailyAmount) return;
+    if (!newQisst.name?.trim() || !newQisst.dailyAmount) {
+      alert("Circle name and daily amount are required.");
+      return;
+    }
+
+    // UNIQUE NAME VALIDATION
+    const nameExists = data.qissts.some(q => q.name.toLowerCase() === newQisst.name?.toLowerCase().trim());
+    if (nameExists) {
+      alert("A circle with this name already exists. Please choose a unique name for each circle.");
+      return;
+    }
+
     const id = crypto.randomUUID();
     const q: Qisst = {
       id,
-      name: newQisst.name!,
+      name: newQisst.name.trim(),
       dailyAmount: Number(newQisst.dailyAmount),
       startDate: newQisst.startDate || new Date().toISOString().split('T')[0],
       totalTarget: newQisst.totalTarget ? Number(newQisst.totalTarget) : undefined
     };
+
     setData(prev => ({ ...prev, qissts: [...prev.qissts, q] }));
     setIsAdding(false);
     setNewQisst({ name: '', dailyAmount: 100, startDate: new Date().toISOString().split('T')[0] });
@@ -79,7 +91,7 @@ const QisstManager: React.FC<Props> = ({ data, setData }) => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Circle Name</label>
+              <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Unique Circle Name</label>
               <input type="text" value={newQisst.name} onChange={e => setNewQisst({...newQisst, name: e.target.value})} className="w-full px-4 py-2.5 rounded-lg border border-slate-200 bg-slate-50 focus:bg-white focus:border-indigo-600 text-slate-900 text-sm font-bold outline-none" placeholder="e.g. Savings 2024" />
             </div>
             <div className="space-y-1.5">
